@@ -3,6 +3,6 @@ namespace TextStatsApi.Services
 {
     public interface ITextAnalysisService
     {
-        TextAnalysisResult Analalyze(string text);
+        TextAnalysisResult Analyze(string text);
     }
 }
