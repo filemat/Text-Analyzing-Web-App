@@ -15,6 +15,7 @@ namespace TextStatsApi.Controllers
             _textAnalysisService = analysisService;
         }
 
+        [HttpPost]
         public ActionResult<TextAnalysisService> AnalyzeText([FromBody] TextAnalysisRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.inputText))
