@@ -1,6 +1,11 @@
+using TextStatsApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
@@ -12,14 +17,17 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<ITextAnalysisService, TextAnalysisService>();
+
 var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
-//app.MapGet("/", () => "Hello World!");
 
 app.Run();
