@@ -36,10 +36,19 @@ function renderResult(data) {
         <tbody>
             <tr><th>Szavak száma</th><td>${data.wordCount}</td></tr>
             <tr><th>Karakterek száma</th><td>${data.charCount}</td></tr>
-            <tr><th>Olvashatósági index</th><td>${data.readabilityIndex.toFixed(2)}</td></tr>
+            <tr>
+                <th>Olvashatósági index</th>
+                <td>
+                    <span id="readabilityValue" class="readability-score">
+                    ${data.readabilityIndex.toFixed(2)}
+                    </span>
+                    <span id="readabilityLabel" class="ms-2 fst-italic"></span>
+                </td>
+            </tr>
         </tbody>
     </table>
     `;
+    updateReadabilityStyle(data.readabilityIndex);
 }
 
 function renderChart(topWords) {
@@ -77,4 +86,26 @@ function renderChart(topWords) {
     `;
 
     chartDiv.innerHTML += tableHTML;
+}
+
+function updateReadabilityStyle(score) {
+    const valueSpan = document.getElementById("readabilityValue");
+    const labelSpan = document.getElementById("readabilityLabel");
+
+    valueSpan.classList.remove("readability-easy", "readability-medium", "readability-hard");
+    labelSpan.textContent = "";
+
+    if (score >= 80) {
+        valueSpan.classList.add("readability-easy");
+        labelSpan.textContent = "Nagyon könnyen olvasható";
+    } else if (score >= 50) {
+        valueSpan.classList.add("readability-medium");
+        labelSpan.textContent = "Átlagos nehézségű szöveg";
+    } else if (score >= 0) {
+        valueSpan.classList.add("readability-hard");
+        labelSpan.textContent = "Nehéz szöveg";
+    } else {
+        valueSpan.classList.add("readability-hard");
+        labelSpan.textContent = "Rendkívül nehéz szöveg";
+    }
 }

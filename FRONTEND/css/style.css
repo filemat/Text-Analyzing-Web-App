@@ -1,0 +1,14 @@
+.readability-easy {
+    color: green;
+    font-weight: bold;
+}
+
+.readability-medium {
+    color: orange;
+    font-weight: bold;
+}
+
+.readability-hard {
+    color: red;
+    font-weight: bold;
+}
