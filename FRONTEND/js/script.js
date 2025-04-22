@@ -80,12 +80,39 @@ function renderChart(topWords) {
         `;
     });
 
-    tableHTML += `
-            </tbody>
-        </table>
-    `;
-
+    tableHTML += `</tbody></table>`;
     chartDiv.innerHTML += tableHTML;
+
+    chartDiv.innerHTML += `<h4 class="mt-4">Top 5 szó diagramként:</h4>`;
+    const barContainer = document.createElement("div");
+    barContainer.className = "bar-container";
+
+    const top5 = topWords.slice(0, 5);
+    const maxFreq = Math.max(...top5.map(w => w.frequency));
+
+    top5.forEach(word => {
+        const row = document.createElement("div");
+        row.className = "bar-row";
+    
+        const label = document.createElement("div");
+        label.className = "bar-label";
+        label.textContent = word.word;
+    
+        const barWrapper = document.createElement("div");
+        barWrapper.className = "bar-wrapper";
+    
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        bar.style.width = `${(word.frequency / maxFreq) * 100}%`;
+        bar.textContent = `${word.frequency}`;
+    
+        barWrapper.appendChild(bar);
+        row.appendChild(label);
+        row.appendChild(barWrapper);
+        barContainer.appendChild(row);
+    });
+
+    chartDiv.appendChild(barContainer);
 }
 
 function updateReadabilityStyle(score) {

@@ -12,3 +12,46 @@
     color: red;
     font-weight: bold;
 }
+
+.bar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.bar-row {
+    display: flex;
+    align-items: center;
+}
+
+.bar-label {
+    width: 80px;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: left;
+    margin-right: 12px;
+}
+
+.bar-wrapper {
+    flex-grow: 1;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 24px;
+    position: relative;
+}
+
+.bar {
+    height: 100%;
+    background-color: #0d6efd;
+    color: white;
+    text-align: right;
+    padding: 0 8px;
+    border-radius: 4px 0 0 4px;
+    line-height: 24px;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
